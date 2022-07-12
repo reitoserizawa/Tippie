@@ -6,6 +6,8 @@ function Profile ({user}) {
 
     const userRestaurantReviews = user.restaurant_reviews
     const userWorkerReviews = user.worker_reviews
+    const userFavorites = user.favorites
+    console.log(user.favorites[0].restaurant_info)
 
     const renderRestaurantReview = userRestaurantReviews.map(review => {
         return <ProfileReviewItem key={review.id + 'key'} name={review.restaurant_info.name} review={review.review} object_id={review.restaurant_info.id} image={review.restaurant_info.image}/>
@@ -13,6 +15,10 @@ function Profile ({user}) {
 
     const renderWorkerReview = userWorkerReviews.map(review => {
         return <ProfileReviewItem key={review.id + 'key'} name={review.worker_info.first_name} review={review.review} object_id={review.worker_info.id} image={review.worker_info.image}/>
+    })
+
+    const renderFavorites = userFavorites.map(favorite => {
+        return <ProfileReviewItem key={favorite.id + 'key'} name={favorite.restaurant_info.name} review={favorite.restaurant_info.address} object_id={favorite.restaurant_info.id} image={favorite.restaurant_info.image}/>
     })
 
     return (
@@ -34,7 +40,7 @@ function Profile ({user}) {
     					                <h4>Whats'up, <b>{user.first_name}!</b></h4>
 					                </li>
 					                <li className="list-group-item">
-						                <span className="badge">3 <i className="fa-solid fa-heart"></i></span>
+						                <span className="badge">{userFavorites.length} <i className="fa-solid fa-heart"></i></span>
 						                Favorites
 					                </li>
 					                <li className="list-group-item">
@@ -72,7 +78,7 @@ function Profile ({user}) {
                             <div className="tab-pane animated active fadeInRight" id="favorite">
                                 <div className="user-profile-content">
                                     <div className="the-timeline">
-                                        <h1>No Favorite Yet!</h1>
+                                        {renderFavorites}
                                     </div>
                                 </div>
                             </div>

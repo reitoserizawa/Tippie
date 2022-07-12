@@ -12,22 +12,38 @@ function RestaurantPage ({user, errors, setErrors}) {
     const [reviewedUsers, setReviewedUsers] = useState([])
     const [showReviews, setShowReviews] = useState(false)
     const [openReviewForm, setOpenReviewForm] = useState(false)
+    const [like, setLike] = useState(null)
     const params = useParams()
 
+    function setLikeBoolean () {
+        if (user.favorites.some(favorite => favorite.restaurant_id === parseInt(params.id))) {
+            setLike(user.favorites.find(favorite => favorite.restaurant_id === parseInt(params.id)))
+        } else {
+            setLike(null)
+        }
+    }
+
     useEffect(()=>{
-        fetch(`${params.id}`)
-        .then(r => r.json())
-        .then(data => {
-            setData(data)
-            setWorkers(data.workers)
-            setReviews(data.restaurant_reviews)
-            setReviewedUsers(data.users)
-        })
+        const getData = async () => {
+            const response = await fetch(`${params.id}`)
+            const data = await response.json()
+            if(response.ok) {
+                setData(data)
+                setWorkers(data.workers)
+                setReviews(data.restaurant_reviews)
+                setReviewedUsers(data.users)
+            } else {
+              console.log(data.errors)
+            } 
+        }
+        
+        getData()
+        setLikeBoolean()
     },[])
 
     const renderWorkers = workers.map(worker => {
         return <WorkerItem 
-        key={worker.id + 'key'}
+        key={worker.id}
         id={worker.id}
         first_name={worker.first_name} 
         last_name={worker.last_name} 
@@ -38,7 +54,7 @@ function RestaurantPage ({user, errors, setErrors}) {
 
     const renderRestaurantReviews = reviews.map(review => {
         return <ReviewItem 
-        key={review.id + 'key'}
+        key={review.id + user.id}
         id={review.id}
         name={review.user_info.first_name + ' ' + review.user_info.last_name} 
         image={review.user_info.image}
@@ -54,12 +70,42 @@ function RestaurantPage ({user, errors, setErrors}) {
     })
 
 
+    function addFavorites () {
+        fetch("/favorites", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({user_id: user.id, restaurant_id: parseInt(params.id)}),
+            }).then((r) => {
+            if (r.ok) {
+                r.json().then((data) => setLike(data));
+            } else {
+                r.json().then((err) => 
+                setErrors(err.errors)
+                )}
+            });
+    }
+
+    function deleteFavorites () {
+        fetch(`/favorites/${like.id}`, {
+            method: "DELETE"})
+        setLike(null)
+    }
+
     return(
         <>
         <div className="container">
             <div className="row">
                 <div className="col-12 col-md-7">
-                    <h1>{data.name}</h1>
+                    <h1 style={{display: "inline"}}>{data.name}</h1>
+                        
+                    <div class="like-content text-right" style={{marginLeft:"30px"}}>
+                        <button class="btn-secondary like-review" onClick={like ? deleteFavorites : addFavorites}>
+                            <i class={like ? "fa fa-heart animate-like animate-like" : "fa fa-heart"} aria-hidden="true"></i> {like ? "Liked" : "Like"}
+                        </button>
+                    </div>
+
                     <p className="text-secondary" style={{margin:"0"}}>{data.category} ・ {data.price}</p>
                     <p className="text-secondary"><i className="fa-solid fa-location-dot"></i> {data.address}</p>
                     <hr />

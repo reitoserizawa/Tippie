@@ -55,7 +55,7 @@ end
 
 400.times do 
     WorkerReview.create(
-        review: Faker::Quote,
+        review: Faker::Quote.famous_last_words,
         star: rand(1..5),
         user_id: rand(1..User.last.id),
         worker_id: rand(1..Worker.last.id)
@@ -64,7 +64,7 @@ end
 
 100.times do 
     RestaurantReview.create(
-        review: Faker::Quote,
+        review: Faker::Quote.famous_last_words,
         star: rand(1..5),
         user_id: rand(1..User.last.id),
         restaurant_id: rand(1..Restaurant.last.id)

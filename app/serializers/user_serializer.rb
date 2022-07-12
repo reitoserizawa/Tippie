@@ -3,4 +3,5 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :restaurant_reviews
   has_many :worker_reviews
+  has_many :favorites
 end

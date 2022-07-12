@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :restaurants, only: [:index, :show]
-  # resources :favorites
+  resources :favorites, only: [:index, :show, :create, :destroy]
   resources :restaurant_reviews
   resources :worker_reviews
   resources :workers, only: [:index, :show]

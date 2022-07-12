@@ -10,19 +10,19 @@ function About () {
                 <nav id="sidebar">
                     <ul className="list-unstyled components">
                         <li className="active">
-                            <a href="#tippie">About Tippie</a>
+                            <a href="#tippie" data-toggle="tab">About Tippie</a>
                         </li>
                         <hr/>
                         <li>
-                            <a href="#partnership">Partnerships</a>
+                            <a href="#partnership" data-toggle="tab">Partnerships</a>
                         </li>
                         <hr/>
                         <li>
-                            <a href="#review">Review</a>
+                            <a href="#review" data-toggle="tab">Review</a>
                         </li>
                         <hr/>
                         <li>
-                            <a href="#contact">Contact</a>
+                            <a href="#contact" data-toggle="tab">Contact</a>
                         </li>
                         <hr/>
                     </ul>
@@ -32,7 +32,7 @@ function About () {
                     <div className="tab-content">
                         <div className="tab-pane animated active fadeInRight" id="tippie">
 
-                            <img src="https://geomarketing.com/wp-content/uploads/2016/02/ThinkstockPhotos-493694506.jpg" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
+                            <img src="https://geomarketing.com/wp-content/uploads/2016/02/ThinkstockPhotos-493694506.jpg" alt="header-1" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
 
                             <h1>About Tippie</h1>
                             <p>Tippie is an application for people who love restaurants but hate bad services. You check restaurants and their workers, and review them. ALso, you can tip them through the app!</p>
@@ -44,7 +44,7 @@ function About () {
 
                         <div className="tab-pane animated fadeInRight" id="partnership">
                             
-                            <img src="https://geomarketing.com/wp-content/uploads/2016/02/ThinkstockPhotos-493694506.jpg" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg" alt="header-2" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
 
                             <h1>Partnership</h1>
                             <p>Tippie is always looking for new partnerships!</p>
@@ -54,7 +54,7 @@ function About () {
                         </div>
 
                         <div className="tab-pane animated fadeInRight" id="review">
-                            <img src="https://geomarketing.com/wp-content/uploads/2016/02/ThinkstockPhotos-493694506.jpg" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
+                            <img src="https://post.healthline.com/wp-content/uploads/2020/09/healthy-eating-ingredients-732x549-thumbnail.jpg" alt="header-3" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
 
                             <h1>Review</h1>
                             <p>Please remember all the reviews are viewed by restaurants and workers.</p>
@@ -64,7 +64,7 @@ function About () {
                         </div>
 
                         <div className="tab-pane animated fadeInRight" id="contact">
-                            <img src="https://geomarketing.com/wp-content/uploads/2016/02/ThinkstockPhotos-493694506.jpg" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
+                            <img src="https://thumbs.dreamstime.com/b/healthy-food-background-fruits-vegetables-cereal-nuts-superfood-dietary-balanced-vegetarian-eating-products-kitchen-143677456.jpg" alt="header-4" style={{height:"350px", width:"100%", objectFit: "cover", marginBottom:"20px"}}/>
 
                             <h1>Contact</h1>
                             <p>Those who try to reach out to the customer service, please directry call the restaurants.</p>
