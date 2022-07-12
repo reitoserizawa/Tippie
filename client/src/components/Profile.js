@@ -4,96 +4,112 @@ import './Profile.css'
 
 function Profile ({user}) {
 
-    const userReviews = user.restaurant_reviews
+    const userRestaurantReviews = user.restaurant_reviews
+    const userWorkerReviews = user.worker_reviews
 
-    const renderReview = userReviews.map(review => {
-        return <ProfileReviewItem name={review.restaurant_info.name} review={review.review}/>
+    const renderRestaurantReview = userRestaurantReviews.map(review => {
+        return <ProfileReviewItem key={review.id + 'key'} name={review.restaurant_info.name} review={review.review} object_id={review.restaurant_info.id} image={review.restaurant_info.image}/>
+    })
+
+    const renderWorkerReview = userWorkerReviews.map(review => {
+        return <ProfileReviewItem key={review.id + 'key'} name={review.worker_info.first_name} review={review.review} object_id={review.worker_info.id} image={review.worker_info.image}/>
     })
 
     return (
         <>
-        <div class="container bootdey">
-            <div class="content-page">
-                {/* background picture */}
-                <div class="profile-banner" style={{background:'url("https://media.istockphoto.com/photos/neon-background-abstract-blue-and-pink-with-light-shapes-line-picture-id1191658515?k=20&m=1191658515&s=612x612&w=0&h=GyYyYJB8QTutGPhOtWdz0k8adWc1q4F55oEdM37duNA=")'}}>
-		            <div class="col-sm-3 avatar-container">
-			            <img src={user.image} class="img-circle profile-avatar" alt="User Picture"/>
+        <div className="container bootdey">
+            <div className="content-page">
+                <div className="profile-banner" style={{background:'url("https://img.freepik.com/free-vector/abstract-background-with-monochrome-low-poly-design_1048-14453.jpg?w=2000")'}}>
+		            <div className="col-sm-3 avatar-container">
+			            <img src={user.image} className="img-circle profile-avatar" alt="User Picture"/>
 		            </div>
 	            </div>
                 
-                <div class="content">
-		            <div class="row">
-			            <div class="col-sm-3">				
-				            <div class="text-center user-profile-2" style={{marginTop:"120px"}}>
-					            <ul class="list-group">
-                                    <li class="list-group-item">
+                <div className="content">
+		            <div className="row">
+			            <div className="col-sm-3">				
+				            <div className="text-center user-profile-2" style={{marginTop:"120px"}}>
+					            <ul className="list-group">
+                                    <li className="list-group-item">
     					                <h4>Whats'up, <b>{user.first_name}!</b></h4>
 					                </li>
-					                <li class="list-group-item">
-						                <span class="badge">3 <i class="fa-solid fa-heart"></i></span>
+					                <li className="list-group-item">
+						                <span className="badge">3 <i className="fa-solid fa-heart"></i></span>
 						                Favorites
 					                </li>
-					                <li class="list-group-item">
-						                <span class="badge">{user.restaurant_reviews.length} <i class="fa-solid fa-utensils"></i></span>
+					                <li className="list-group-item">
+						                <span className="badge">{user.restaurant_reviews.length} <i className="fa-solid fa-utensils"></i></span>
 						                Reviews
 					                </li>
-					                <li class="list-group-item">
-						                <span class="badge">{user.worker_reviews.length} <i class="fa-solid fa-person"></i></span>
+					                <li className="list-group-item">
+						                <span className="badge">{user.worker_reviews.length} <i className="fa-solid fa-person"></i></span>
 						                Reviews
 					                </li>
 					            </ul>
-					        <div class="user-button">
-						        <div class="row">
-							        <div class="col-lg-12">
-								        <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> keep</button>
-                                        <button type="button" class="btn btn-primary btn-sm btn-block"><i class="fa fa-envelope"></i> keep</button>
+					        <div className="user-button">
+						        <div className="row">
+							        <div className="col-lg-12">
+								        <button type="button" className="btn btn-primary btn-sm btn-block"><i className="fa-solid fa-pen-to-square"></i> Edit Profile</button>
+                                        
 							        </div>
 						        </div>
 					        </div>
 				        </div>
 			        </div>
 
-			    <div class="col-sm-9">
-				    <div class="widget widget-tabbed">
-					    <ul class="nav nav-tabs nav-justified">
-					        <li class="active"><a href="#my-timeline" data-toggle="tab"><i class="fa fa-pencil"></i>Timeline</a></li>
-					        <li><a href="#about" data-toggle="tab"><i class="fa fa-user"></i> About</a></li>
+			    <div className="col-sm-9">
+				    <div className="widget widget-tabbed">
+
+					    <ul className="nav nav-tabs nav-justified" style={{marginTop:"50px"}}>
+                            <li className="active" style={{marginRight:"10px"}}><a href="#favorite" data-toggle="tab"><i className="fa-solid fa-heart"></i> Favorite</a></li>
+					        <li style={{marginRight:"10px"}}><a href="#restaurant-review" data-toggle="tab"><i className="fa-solid fa-utensils"></i> Restaurant Reviews</a></li>
+                            <li style={{marginRight:"10px"}}><a href="#worker-review" data-toggle="tab"><i className="fa-solid fa-person"></i> Worker Reviews</a></li>
+					        <li style={{marginRight:"10px"}}><a href="#about" data-toggle="tab"><i className="fa fa-user"></i> Profile</a></li>
 					    </ul>
 
-                        <div class="tab-content">
+                        <div className="tab-content">
 
-                        {renderReview}
+                            <div className="tab-pane animated active fadeInRight" id="favorite">
+                                <div className="user-profile-content">
+                                    <div className="the-timeline">
+                                        <h1>No Favorite Yet!</h1>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="tab-pane animated fadeInRight" id="restaurant-review">
+                                <div className="user-profile-content">
+                                    <div className="the-timeline">
+                                        {renderRestaurantReview}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="tab-pane animated fadeInRight" id="worker-review">
+                                <div className="user-profile-content">
+                                        {renderWorkerReview}
+                                </div>
+                            </div>
 
 
-                            <div class="tab-pane animated fadeInRight" id="about">
-                                <div class="user-profile-content">
+                            <div className="tab-pane animated fadeInRight" id="about">
+                                <div className="user-profile-content">
                                     <h5><strong>ABOUT</strong> ME</h5>
                                     <p>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. 
+                                    {user.bio}
                                     </p>
                                     <hr />
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <h5><strong>CONTACT</strong> ME</h5>
+                                    <div className="row">
+                                        <div className="col-sm-6">
+                                            <h5><strong>CONTACT INFORMATION</strong></h5>
                                                 <address>
                                                     <strong>Phone</strong>
-                                                    <abbr title="Phone">+62 857 123 4567</abbr>
+                                                    <abbr title="Phone">{user.phone}</abbr>
                                                 </address>
                                                 <address>
                                                     <strong>Email</strong>
-                                                    <a href="mailto:#">first.last@example.com</a>
+                                                    <a href="mailto:#">{user.email}</a>
                                                 </address>
-                                                <address>
-                                                    <strong>Website</strong>
-                                                    <a href="http://r209.com">http://r209.com</a>
-                                                </address>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <h5><strong>MY</strong> SKILLS</h5>
-                                            <p>UI Design</p>
-                                            <p>Clean and Modern Web Design</p>
-                                            <p>PHP and MySQL Programming</p>
-                                            <p>Vector Design</p>
                                         </div>
                                     </div>
                                 </div>

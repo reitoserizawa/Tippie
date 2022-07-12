@@ -1,4 +1,11 @@
 .card-img-top{
     height: 250px;
     object-fit: cover;
+    transition: 1s ease;
+}
+.card-img-top:hover{
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    transition: 1s ease;
 }

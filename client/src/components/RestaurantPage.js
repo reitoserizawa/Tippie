@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import WorkerItem from './WorkerItem'
 import ReviewItem from './ReviewItem'
 import './RestaurantPage.css'
@@ -12,7 +12,6 @@ function RestaurantPage ({user, errors, setErrors}) {
     const [reviewedUsers, setReviewedUsers] = useState([])
     const [showReviews, setShowReviews] = useState(false)
     const [openReviewForm, setOpenReviewForm] = useState(false)
-    const history = useHistory()
     const params = useParams()
 
     useEffect(()=>{
@@ -28,7 +27,7 @@ function RestaurantPage ({user, errors, setErrors}) {
 
     const renderWorkers = workers.map(worker => {
         return <WorkerItem 
-        key={worker.id}
+        key={worker.id + 'key'}
         id={worker.id}
         first_name={worker.first_name} 
         last_name={worker.last_name} 
@@ -39,7 +38,7 @@ function RestaurantPage ({user, errors, setErrors}) {
 
     const renderRestaurantReviews = reviews.map(review => {
         return <ReviewItem 
-        key={review.id}
+        key={review.id + 'key'}
         id={review.id}
         name={review.user_info.first_name + ' ' + review.user_info.last_name} 
         image={review.user_info.image}
@@ -58,25 +57,25 @@ function RestaurantPage ({user, errors, setErrors}) {
     return(
         <>
         <div className="container">
-            <div class="row">
-                <div class="col-12 col-md-7">
+            <div className="row">
+                <div className="col-12 col-md-7">
                     <h1>{data.name}</h1>
-                    <p class="text-secondary" style={{margin:"0"}}>{data.category} ・ {data.price}</p>
-                    <p class="text-secondary"><i class="fa-solid fa-location-dot"></i> {data.address}</p>
+                    <p className="text-secondary" style={{margin:"0"}}>{data.category} ・ {data.price}</p>
+                    <p className="text-secondary"><i className="fa-solid fa-location-dot"></i> {data.address}</p>
                     <hr />
                     <p><strong>About</strong> {data.name}</p>
                 </div>
-                <div class="col-12 col-md-5">
-                    <img src={data.image} class="restaurant-picture" alt={data.name}/>
+                <div className="col-12 col-md-5">
+                    <img src={data.image} className="restaurant-picture" alt={data.name}/>
                 </div>
             </div>
 
             <hr />
 
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <h2 class="p-3">Our Team</h2>
-                    <div class="row">
+            <div className="row">
+                <div className="col-12 col-md-12">
+                    <h2 className="p-3">Our Team</h2>
+                    <div className="row">
                         {renderWorkers}
                     </div>
                 </div>
@@ -84,9 +83,9 @@ function RestaurantPage ({user, errors, setErrors}) {
 
             <hr />
 
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <h2 class="p-3">Reviews</h2>
+            <div className="row">
+                <div className="col-12 col-md-12">
+                    <h2 className="p-3">Reviews</h2>
                 </div>
             </div>
 

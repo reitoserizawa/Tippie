@@ -19,7 +19,6 @@ function EditRestaurantReviewForm ({open, onClose, id, user, star, restaurant_id
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setReview({ ...review, [name]: value, user_id: user.id});
-        console.log(review)
     }
 
     const editReview = (e) => {
@@ -88,27 +87,27 @@ function EditRestaurantReviewForm ({open, onClose, id, user, star, restaurant_id
     return ReactDom.createPortal(
     <div className='overlay' style={Overlay}>
         <div className='modal-style' style={Modal_Style}>        
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-md-7 mx-auto my-auto">
-                        <div class="card">
-                            <div class="card-body px-lg-5 py-lg-5 text-center">
-                                <img src={user.image} class="rounded-circle avatar-lg img-thumbnail mb-4" alt="profile-image"/>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-5 col-md-7 mx-auto my-auto">
+                        <div className="card">
+                            <div className="card-body px-lg-5 py-lg-5 text-center">
+                                <img src={user.image} className="rounded-circle avatar-lg img-thumbnail mb-4" alt="profile-image"/>
                                 <form onSubmit={editReview}>
-                                    <div class="row mb-4">
-                                        <fieldset class="rating" onChange={handleOnChange}>
-                                            <input type="radio" id="star5" name="star" value="5" /><label class = "full" htmlFor="star5" title="Awesome - 5 stars"></label>
-                                            <input type="radio" id="star4" name="star" value="4" /><label class = "full" htmlFor="star4" title="Pretty good - 4 stars"></label>
-                                            <input type="radio" id="star3" name="star" value="3" /><label class = "full" htmlFor="star3" title="Meh - 3 stars"></label>
-                                            <input type="radio" id="star2" name="star" value="2" /><label class = "full" htmlFor="star2" title="Kinda bad - 2 stars"></label>
-                                            <input type="radio" id="star1" name="star" value="1" /><label class = "full" htmlFor="star1" title="Sucks big time - 1 star"></label>
+                                    <div className="row mb-4">
+                                        <fieldset className="rating" onChange={handleOnChange}>
+                                            <input type="radio" id="star5" name="star" value="5" /><label className = "full" htmlFor="star5" title="Awesome - 5 stars"></label>
+                                            <input type="radio" id="star4" name="star" value="4" /><label className = "full" htmlFor="star4" title="Pretty good - 4 stars"></label>
+                                            <input type="radio" id="star3" name="star" value="3" /><label className = "full" htmlFor="star3" title="Meh - 3 stars"></label>
+                                            <input type="radio" id="star2" name="star" value="2" /><label className = "full" htmlFor="star2" title="Kinda bad - 2 stars"></label>
+                                            <input type="radio" id="star1" name="star" value="1" /><label className = "full" htmlFor="star1" title="Sucks big time - 1 star"></label>
                                         </fieldset>
                                     </div>
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder='Write your review!' name="review" onChange={handleOnChange} value={review.review}></textarea>
+                                    <div className="form-group">
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" placeholder='Write your review!' name="review" onChange={handleOnChange} value={review.review}></textarea>
                                     </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn bg-info btn-lg my-4">Submit</button>
+                                    <div className="text-center">
+                                        <button type="submit" className="btn bg-info btn-lg my-4">Submit</button>
                                         { errors.length !== 0 ? <Errors key={errors} errors={errors} /> : null}
                                     </div>
                                 </form>

@@ -41,13 +41,19 @@ function NavBar ({user, setUser, handleLogout, errors, setErrors}) {
     <>
     <nav className="navbar fixed-top navbar-light bg-white" style={{boxShadow: "0 2px 4px 0 rgba(0,0,0,.2)"}}>
         <div className="container">
+            {user ? 
             <NavLink to='/restaurants' exact>
                 <img src={logo} alt=""  width="66" height="37"/>
-            </NavLink>
+            </NavLink> : 
+            <>
+            <img src={logo} alt=""  width="66" height="37" onClick={() => setOpenLogIn(!openLogIn)}/>
+            <LogIn  open={openLogIn} onClose={() => setOpenLogIn(false)} setUser={setUser} errors={errors} setErrors={setErrors}/>
+            </>
+            }
             <ul className="navbar-nav mr-auto"> 
                 <form className="form-inline my-8 my-lg-3" style={{margin:"10px"}}>
                     <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button type="button" class="btn btn-light"><i className="fas fa-search"></i></button>
+                    <button type="button" className="btn btn-light"><i className="fas fa-search"></i></button>
                 </form>
             </ul>
         </div>

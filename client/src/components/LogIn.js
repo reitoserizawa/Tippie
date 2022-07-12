@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useHistory} from "react-router-dom";
 import ReactDom from 'react-dom'
 import Errors from './Errors'
 import './LogIn.css'
@@ -6,6 +7,7 @@ import './LogIn.css'
 function LogIn ({open, onClose, setUser, errors, setErrors}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const history = useHistory()
 
     const Overlay = {
         position: 'fixed',
@@ -40,6 +42,7 @@ function LogIn ({open, onClose, setUser, errors, setErrors}) {
             onClose()
             setUsername("")
             setPassword("")
+            history.push("/restaurants")
         } else {
             r.json().then((err) => {
                 setErrors(err.errors)
@@ -54,44 +57,44 @@ function LogIn ({open, onClose, setUser, errors, setErrors}) {
     return ReactDom.createPortal(
     <div className='overlay' style={Overlay}>
         <div className='modal-style' style={Modal_Style}>        
-        <div id="main-wrapper" class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-10">
-                    <div class="card border-0">
-                        <div class="card-body p-0">
-                            <div class="row no-gutters">
-                                <div class="col-lg-6">
-                                    <div class="p-5">
-                                        <div class="mb-5">
-                                            <h3 class="h4 font-weight-bold text-theme">Login</h3>
+        <div id="main-wrapper" className="container">
+            <div className="row justify-content-center">
+                <div className="col-xl-10">
+                    <div className="card border-0">
+                        <div className="card-body p-0">
+                            <div className="row no-gutters">
+                                <div className="col-lg-6">
+                                    <div className="p-5">
+                                        <div className="mb-5">
+                                            <h3 className="h4 font-weight-bold text-theme">Login</h3>
                                         </div>
 
-                                        <h6 class="h5 mb-0">Welcome back!</h6>
-                                        <p class="text-muted mt-2 mb-5">Enter your username and password to access everything.</p>
+                                        <h6 className="h5 mb-0">Welcome back!</h6>
+                                        <p className="text-muted mt-2 mb-5">Enter your username and password to access everything.</p>
 
                                         <form onSubmit={handleLogin}>
-                                            <div class="form-group">
-                                                <label htmlFor="exampleInputUsername">Username</label>
-                                                <input type="text" name="username" class="form-control" id="exampleInputUsername" value={username} onChange={(e) => setUsername(e.target.value)}/>
+                                            <div className="form-group">
+                                                <label>Username</label>
+                                                <input type="text" name="username" className="form-control" value={username} onChange={(e) => setUsername(e.target.value)}/>
                                             </div>
-                                            <div class="form-group mb-5">
-                                                <label htmlFor="exampleInputPassword1">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                                            <div className="form-group mb-5">
+                                                <label>Password</label>
+                                                <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)}/>
                                             </div>
-                                            <button type="submit" class="btn btn-theme">Login</button>
+                                            <button type="submit" className="btn btn-theme">Login</button>
                                             { errors.length !== 0 ? <Errors key={errors} errors={errors} /> : null}
                                         </form>
 
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 d-none d-lg-inline-block">
-                                    <div class="account-block rounded-right">
-                                        <div class="overlay rounded-right"></div>
-                                        <div class="account-testimonial">
-                                            <h4 class="text-white mb-4">Find restaurants and write reviews!</h4>
-                                            <p class="lead text-white">"I get hanrgry when I get bad service at restaurants"</p>
-                                            <p>- Gay Seltzer Master</p>
+                                <div className="col-lg-6 d-none d-lg-inline-block">
+                                    <div className="account-block rounded-right">
+                                        <div className="overlay rounded-right"></div>
+                                        <div className="account-testimonial">
+                                            <h4 className="text-white mb-4">Check restaurants and workers.</h4>
+                                            <p className="lead text-white">"I get hanrgry when I get bad service at restaurants"</p>
+                                            <p className="lead text-white">- Gay Seltzer Master</p>
                                         </div>
                                     </div>
                                 </div>

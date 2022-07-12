@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Component} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Route, Switch, useHistory } from 'react-router-dom';
 import NavBar from './components/NavBar'
 import Profile from './components/Profile';
@@ -8,18 +8,10 @@ import WorkerPage from './components/WorkerPage'
 import About from './components/About'
 
 function App() {
-  const history = useHistory()
   const [user, setUser] = useState(null)
   const [errors, setErrors] = useState([]);
   const [restaurants, setRestaurants] = useState([])
-
-  // fetch("/me").then((r) => {
-  //   if (r.ok) {
-  //     r.json().then((user) => {
-  //       setUser(user)
-  //     });
-  //   }
-  // });
+  const history = useHistory()
 
   useEffect(() => {
 
@@ -47,7 +39,7 @@ function App() {
     .then((r) => {
       if (r.ok) {
         setUser(null);
-        history.push("/restaurants")
+        history.push("/")
       }
     });
   }
@@ -56,8 +48,11 @@ function App() {
     <div className="App">
       <NavBar user={user} setUser={setUser} handleLogout={handleLogout} errors={errors} setErrors={setErrors}/>
       <Switch>
+        <Route exact path='/'>
+          <About />
+        </Route>
         <Route exact path='/restaurants'>
-          <RestaurantContainer restaurants={restaurants}/>
+          <RestaurantContainer user={user} restaurants={restaurants}/>
         </Route>
         <Route exact path="/restaurants/:id">
           <RestaurantPage user={user} errors={errors} setErrors={setErrors}/>
@@ -68,9 +63,8 @@ function App() {
         <Route exact path='/profile'>
           <Profile user={user}/>
         </Route>
-
-        <Route exact path='/about'>
-          <About />
+        <Route exact path='*'>
+          <h1>Page not found</h1>
         </Route>
       </Switch>
     </div>

@@ -1,5 +1,5 @@
 class RestaurantReviewSerializer < ActiveModel::Serializer
-  attributes :id, :review, :star, :user_id, :restaurant_id, :user_info, :restaurant_info
+  attributes :id, :review, :star, :user_id, :restaurant_id, :updated_at, :user_info, :restaurant_info
 
   belongs_to :restaurant
   belongs_to :user

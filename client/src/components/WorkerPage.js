@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ReviewItem from './ReviewItem'
 import './RestaurantPage.css'
-import NewRestaurantReviewForm from './NewRestaurantReviewForm';
 import ReviewHeader from './ReviewHeader';
 
 function WorkerPage ({user, errors, setErrors}) {
@@ -11,7 +10,6 @@ function WorkerPage ({user, errors, setErrors}) {
     const [reviewedUsers, setReviewedUsers] = useState([])
     const [showReviews, setShowReviews] = useState(false)
     const [openReviewForm, setOpenReviewForm] = useState(false)
-    const history = useHistory()
     const params = useParams()
 
     useEffect(()=>{
@@ -26,7 +24,7 @@ function WorkerPage ({user, errors, setErrors}) {
 
     const renderRestaurantReviews = reviews.map(review => {
         return <ReviewItem 
-        key={review.id}
+        key={review.id + 'key'}
         id={review.id}
         name={review.user_info.first_name + ' ' + review.user_info.last_name} 
         image={review.user_info.image}
@@ -44,29 +42,29 @@ function WorkerPage ({user, errors, setErrors}) {
     return (
         <>
         <div className="container">
-            <div class="row">
-                <div class="col-12 col-md-5">
-                    <img src={data.image} class="worker-picture" alt={data.first_name}/>
+            <div className="row">
+                <div className="col-12 col-md-5">
+                    <img src={data.image} className="worker-picture" alt={data.first_name}/>
                 </div>
-                <div class="col-12 col-md-5">
+                <div className="col-12 col-md-5">
                     <h1>{data.first_name + ' ' + data.last_name}</h1>
-                    <p class="text-secondary" style={{margin:"0"}}>from 
+                    <p className="text-secondary" style={{margin:"0"}}>from 
                     {/* <b>{data.restaurant.name}</b> */}
                     </p>
                     <hr />
                     <p><strong>About</strong> {data.first_name}</p>
-                    <p class="text-secondary" style={{margin:"0"}}>{data.bio}</p>
+                    <p className="text-secondary" style={{margin:"0"}}>{data.bio}</p>
                 </div>
-                <div class="col-12 col-md-2" style={{marginTop: "8px"}}>
-                    <a href="https://venmo.com/code?user_id=3577965187171567239"><button type="button" class="btn btn-warning"><i class="fa fa-money"></i> Send Money</button></a>
+                <div className="col-12 col-md-2" style={{marginTop: "8px"}}>
+                    <a href="https://venmo.com/code?user_id=3577965187171567239"><button type="button" className="btn btn-warning"><i className="fa fa-money"></i> Send Money</button></a>
                 </div>
             </div>
             
             <hr />
 
-            <div class="row">
-                <div class="col-12 col-md-12">
-                    <h2 class="p-3">Reviews</h2>
+            <div className="row">
+                <div className="col-12 col-md-12">
+                    <h2 className="p-3">Reviews</h2>
                 </div>
             </div>    
 

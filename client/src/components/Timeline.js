@@ -3,8 +3,6 @@ import './Profile.css'
 
 function ProfileReviewItem ({restaurant_reviews, worker_reviews}) {
 
-    console.log(restaurant_reviews, worker_reviews)
-
     return(
         <div class="tab-pane animated active fadeInRight" id="my-timeline">
         <div class="user-profile-content">

@@ -34,24 +34,26 @@ puts "Seeding users"
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         image: Faker::Avatar.image(slug: "my-own-slug", size: "500x500"),
-        bio: Faker::Quote,
+        bio: Faker::Quote.famous_last_words,
+        phone: Faker::PhoneNumber.phone_number,
+        email: Faker::Internet.email,
         admin: false,
         username: Faker::Internet.username,
         password: '12345'
     )
 end
 
-50.times do 
+100.times do 
     Worker.create(
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         image: Faker::Avatar.image(slug: "my-own-slug", size: "500x500"),
-        bio: Faker::Quote,
+        bio: Faker::Quote.famous_last_words,
         restaurant_id: rand(1..Restaurant.last.id)
     )
 end
 
-100.times do 
+400.times do 
     WorkerReview.create(
         review: Faker::Quote,
         star: rand(1..5),
@@ -60,7 +62,7 @@ end
     )
 end
 
-50.times do 
+100.times do 
     RestaurantReview.create(
         review: Faker::Quote,
         star: rand(1..5),
