@@ -90,7 +90,6 @@ function RestaurantPage ({user, errors, setErrors}) {
         fetch(`/favorites/${like.id}`, {
             method: "DELETE"})
         setLike(null)
-
     }
 
     return(

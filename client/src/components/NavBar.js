@@ -41,7 +41,7 @@ function NavBar ({user, setUser, handleLogout, errors, setErrors, isLoggedIn, se
     <>
     <nav className="navbar fixed-top navbar-light bg-white" style={{boxShadow: "0 2px 4px 0 rgba(0,0,0,.2)"}}>
         <div className="container">
-            {user ? 
+            {isLoggedIn ? 
             <NavLink to='/restaurants' exact>
                 <img src={logo} alt=""  width="66" height="37"/>
             </NavLink> : 

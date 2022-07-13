@@ -18,7 +18,7 @@ function RestaurantContainer ({restaurants, user}) {
 
     return(
         <>
-        <div className="container" style={{height: '50vh'}}>
+        {/* <div className="container" style={{height: '50vh'}}>
             <div className="row">
                 <div className="col-6 col-md-4">
                     <h1 className="text-center">City</h1>
@@ -34,7 +34,7 @@ function RestaurantContainer ({restaurants, user}) {
                 </div>
             </div>
         </div>
-        <hr />
+        <hr /> */}
         <div className="container">
             <div className="row">
                 {renderRestaurants}

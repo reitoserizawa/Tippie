@@ -63,10 +63,10 @@ function Profile ({user}) {
 					            </ul>
 					        <div className="user-button">
 						        <div className="row">
-							        <div className="col-lg-12">
+							        {/* <div className="col-lg-12">
 								        <button type="button" className="btn btn-primary btn-sm btn-block"><i className="fa-solid fa-pen-to-square"></i> Edit Profile</button>
                                         
-							        </div>
+							        </div> */}
 						        </div>
 					        </div>
 				        </div>

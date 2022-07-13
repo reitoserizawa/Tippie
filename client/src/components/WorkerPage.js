@@ -54,7 +54,7 @@ function WorkerPage ({user, errors, setErrors}) {
                     <p className="text-secondary" style={{margin:"0"}}>{data.bio}</p>
                 </div>
                 <div className="col-12 col-md-2" style={{marginTop: "8px"}}>
-                    <a href="https://venmo.com/code?user_id=3577965187171567239"><button type="button" className="btn btn-warning"><i className="fa fa-money"></i> Send Money</button></a>
+                    <a href="https://venmo.com/code?user_id=3577965187171567239" target="_blank" rel="noopener noreferrer"><button type="button" className="btn btn-warning" ><i className="fa fa-money"></i> Send Money</button></a>
                 </div>
             </div>
             
