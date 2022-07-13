@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 import Errors from './Errors'
 import './LogIn.css'
 
-function LogIn ({open, onClose, setUser, errors, setErrors}) {
+function LogIn ({open, onClose, setUser, errors, setErrors, setIsLoggedIn}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory()
@@ -40,6 +40,7 @@ function LogIn ({open, onClose, setUser, errors, setErrors}) {
                 setUser(user)
             });
             onClose()
+            setIsLoggedIn(true)
             setUsername("")
             setPassword("")
             history.push("/restaurants")

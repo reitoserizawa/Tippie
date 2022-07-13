@@ -15,7 +15,7 @@ if !json.nil?
     json["businesses"].map do |restaurant|
         Restaurant.create(
             name: "#{restaurant["name"]}", 
-            address: "#{restaurant["location"]["display_address"]}", 
+            address: "#{restaurant["location"]["display_address"].join(' ')}", 
             image: "#{restaurant["image_url"]}", 
             price: "#{restaurant["price"]}", 
             category: "#{restaurant["categories"].first["title"]}",

@@ -5,7 +5,7 @@ import './RestaurantPage.css'
 import ReviewHeader from './ReviewHeader';
 
 function WorkerPage ({user, errors, setErrors}) {
-    const [data, setData] = useState([])
+    const [data, setData] = useState({restaurant:[]})
     const [reviews, setReviews] = useState([])
     const [reviewedUsers, setReviewedUsers] = useState([])
     const [showReviews, setShowReviews] = useState(false)
@@ -22,9 +22,9 @@ function WorkerPage ({user, errors, setErrors}) {
         })
     },[])
 
-    const renderRestaurantReviews = reviews.map(review => {
+    const renderRestaurantReviews = reviews.map((review, i) => {
         return <ReviewItem 
-        key={review.id + 'key'}
+        key={review.id + i}
         id={review.id}
         name={review.user_info.first_name + ' ' + review.user_info.last_name} 
         image={review.user_info.image}
@@ -48,9 +48,7 @@ function WorkerPage ({user, errors, setErrors}) {
                 </div>
                 <div className="col-12 col-md-5">
                     <h1>{data.first_name + ' ' + data.last_name}</h1>
-                    <p className="text-secondary" style={{margin:"0"}}>from 
-                    {/* <b>{data.restaurant.name}</b> */}
-                    </p>
+                    <p className="text-secondary" style={{margin:"0"}}>from <b>{data.restaurant.name}</b></p>
                     <hr />
                     <p><strong>About</strong> {data.first_name}</p>
                     <p className="text-secondary" style={{margin:"0"}}>{data.bio}</p>
@@ -73,7 +71,7 @@ function WorkerPage ({user, errors, setErrors}) {
             <hr style={{marginBottom: "30px"}}/>
         
             <div id="reviews">
-                {renderRestaurantReviews}
+                {showReviews? renderRestaurantReviews : null}
             </div>
         </div>
         </>

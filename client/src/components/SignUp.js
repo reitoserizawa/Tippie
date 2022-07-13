@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 import Errors from './Errors'
 import './LogIn.css'
 
-function SignUp ({open, onClose, setUser, errors, setErrors}) {
+function SignUp ({open, onClose, setUser, errors, setErrors, setIsLoggedIn}) {
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -46,6 +46,7 @@ function SignUp ({open, onClose, setUser, errors, setErrors}) {
                 password: "",
                 password_confirmation: ""
             })
+            setIsLoggedIn(true)
             history.push("/restaurants")
         } else {
             r.json().then((err) => 

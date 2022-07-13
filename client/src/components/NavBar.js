@@ -5,13 +5,13 @@ import LogIn from './LogIn'
 import SignUp from './SignUp'
 import './NavBar.css'
 
-function NavBar ({user, setUser, handleLogout, errors, setErrors}) {
+function NavBar ({user, setUser, handleLogout, errors, setErrors, isLoggedIn, setIsLoggedIn}) {
     const [openLogIn, setOpenLogIn] = useState(false)
     const [openSignUp, setOpenSignUp] = useState(false)
 
     let buttons
 
-    if (user) {
+    if (isLoggedIn) {
         buttons = 
         <>
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -29,9 +29,9 @@ function NavBar ({user, setUser, handleLogout, errors, setErrors}) {
         <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
             <li className="nav-item">
                 <button type="button" className="btn btn-sm btn-outline-warning" onClick={() => setOpenLogIn(!openLogIn)} style={{margin:"10px"}}><i className="fa-solid fa-arrow-right-to-bracket"></i> Log In</button>
-                <LogIn  open={openLogIn} onClose={() => setOpenLogIn(false)} setUser={setUser} errors={errors} setErrors={setErrors}/>
+                <LogIn  open={openLogIn} onClose={() => setOpenLogIn(false)} setUser={setUser} errors={errors} setErrors={setErrors} setIsLoggedIn={setIsLoggedIn}/>
                 <button type="button" className="btn btn-sm btn-outline-warning" onClick={() => setOpenSignUp(!openSignUp)} style={{margin:"10px"}}><i className="fa-solid fa-user-plus"></i> Sign Up</button>
-                <SignUp  open={openSignUp} onClose={() => setOpenSignUp(false)} setUser={setUser} errors={errors} setErrors={setErrors}/>
+                <SignUp  open={openSignUp} onClose={() => setOpenSignUp(false)} setUser={setUser} errors={errors} setErrors={setErrors} setIsLoggedIn={setIsLoggedIn}/>
             </li>
         </ul>
         </>

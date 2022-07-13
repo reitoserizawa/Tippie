@@ -7,19 +7,28 @@ function Profile ({user}) {
     const userRestaurantReviews = user.restaurant_reviews
     const userWorkerReviews = user.worker_reviews
     const userFavorites = user.favorites
-    console.log(user.favorites[0].restaurant_info)
 
-    const renderRestaurantReview = userRestaurantReviews.map(review => {
+    let renderRestaurantReview
+    let renderWorkerReview
+    let renderFavorites
+
+    if (userRestaurantReviews.length !== 0) {
+        renderRestaurantReview = userRestaurantReviews.map(review => {
         return <ProfileReviewItem key={review.id + 'key'} name={review.restaurant_info.name} review={review.review} object_id={review.restaurant_info.id} image={review.restaurant_info.image}/>
     })
+    }
 
-    const renderWorkerReview = userWorkerReviews.map(review => {
+    if (userWorkerReviews.length !== 0) {
+        renderWorkerReview = userWorkerReviews.map(review => {
         return <ProfileReviewItem key={review.id + 'key'} name={review.worker_info.first_name} review={review.review} object_id={review.worker_info.id} image={review.worker_info.image}/>
     })
+    }
 
-    const renderFavorites = userFavorites.map(favorite => {
+    if (userFavorites.length !== 0) {
+        renderFavorites = userFavorites.map(favorite => {
         return <ProfileReviewItem key={favorite.id + 'key'} name={favorite.restaurant_info.name} review={favorite.restaurant_info.address} object_id={favorite.restaurant_info.id} image={favorite.restaurant_info.image}/>
     })
+    }
 
     return (
         <>

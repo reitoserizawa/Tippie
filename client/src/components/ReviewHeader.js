@@ -4,8 +4,8 @@ import NewRestaurantReviewForm from './NewRestaurantReviewForm';
 
 function ReviewHeader({reviews, data, reviewedUsers, openReviewForm, setOpenReviewForm, restaurant_id, worker_id, setShowReviews, showReviews, errors, setErrors, user}) {
 
-    const renderUserPictures = reviewedUsers.map(user => {
-        return <a key={user.id + 'key'} className="mr-2" data-toggle="tooltip" data-placement="top"><img src={user.image} className="rounded-circle" width="45" alt="user"/></a>
+    const renderUserPictures = reviewedUsers.map((user, i) => {
+        return <a key={user.id + i} className="mr-2" data-toggle="tooltip" data-placement="top"><img src={user.image} className="rounded-circle" width="45" alt="user"/></a>
     })
 
     const fiveStar = reviews.filter(review => review.star === 5)

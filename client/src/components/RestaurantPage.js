@@ -15,14 +15,6 @@ function RestaurantPage ({user, errors, setErrors}) {
     const [like, setLike] = useState(null)
     const params = useParams()
 
-    function setLikeBoolean () {
-        if (user.favorites.some(favorite => favorite.restaurant_id === parseInt(params.id))) {
-            setLike(user.favorites.find(favorite => favorite.restaurant_id === parseInt(params.id)))
-        } else {
-            setLike(null)
-        }
-    }
-
     useEffect(()=>{
         const getData = async () => {
             const response = await fetch(`${params.id}`)
@@ -69,6 +61,13 @@ function RestaurantPage ({user, errors, setErrors}) {
         />
     })
 
+    function setLikeBoolean () {
+        if (user.favorites.some(favorite => favorite.restaurant_id === parseInt(params.id))) {
+            setLike(user.favorites.find(favorite => favorite.restaurant_id === parseInt(params.id)))
+        } else {
+            setLike(null)
+        }
+    }
 
     function addFavorites () {
         fetch("/favorites", {
@@ -91,6 +90,7 @@ function RestaurantPage ({user, errors, setErrors}) {
         fetch(`/favorites/${like.id}`, {
             method: "DELETE"})
         setLike(null)
+
     }
 
     return(
@@ -99,17 +99,16 @@ function RestaurantPage ({user, errors, setErrors}) {
             <div className="row">
                 <div className="col-12 col-md-7">
                     <h1 style={{display: "inline"}}>{data.name}</h1>
-                        
-                    <div class="like-content text-right" style={{marginLeft:"30px"}}>
-                        <button class="btn-secondary like-review" onClick={like ? deleteFavorites : addFavorites}>
-                            <i class={like ? "fa fa-heart animate-like animate-like" : "fa fa-heart"} aria-hidden="true"></i> {like ? "Liked" : "Like"}
-                        </button>
-                    </div>
-
                     <p className="text-secondary" style={{margin:"0"}}>{data.category} ・ {data.price}</p>
                     <p className="text-secondary"><i className="fa-solid fa-location-dot"></i> {data.address}</p>
+                    <div className="like-content">
+                        <button className="btn-secondary like-review" onClick={like ? deleteFavorites : addFavorites}>
+                            <i className={like ? "fa fa-heart animate-like animate-like" : "fa fa-heart"} aria-hidden="true"></i> {like ? "Liked" : "Like"}
+                        </button>
+                    </div>
                     <hr />
                     <p><strong>About</strong> {data.name}</p>
+                    
                 </div>
                 <div className="col-12 col-md-5">
                     <img src={data.image} className="restaurant-picture" alt={data.name}/>

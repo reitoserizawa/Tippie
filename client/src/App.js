@@ -8,7 +8,8 @@ import WorkerPage from './components/WorkerPage'
 import About from './components/About'
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({id: [], favorites: [], restaurant_reviews: [], worker_reviews: []})
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [errors, setErrors] = useState([]);
   const [restaurants, setRestaurants] = useState([])
   const history = useHistory()
@@ -20,6 +21,7 @@ function App() {
       const data = await response.json()
       if(response.ok) {
         setUser(data)
+        setIsLoggedIn(true)
       } else {
         console.log(data.errors)
       } 
@@ -39,6 +41,7 @@ function App() {
     .then((r) => {
       if (r.ok) {
         setUser(null);
+        setIsLoggedIn(false)
         history.push("/")
       }
     });
@@ -46,7 +49,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar user={user} setUser={setUser} handleLogout={handleLogout} errors={errors} setErrors={setErrors}/>
+      <NavBar user={user} setUser={setUser} handleLogout={handleLogout} errors={errors} setErrors={setErrors} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
       <Switch>
         <Route exact path='/'>
           <About />
